@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+FoodR | Bosh sahifa
+{% endblock title %}
+
+{% block content %}
+
+<h2 style="margin-bottom: 25px;">🍴 Taomlar ro‘yxati </h2>
+
+<div class="meal-grid">
+
+    {% for meal in meals %}
+        <div class="meal-card">
+            <img src="{{ meal.image.url }}" alt="{{ meal.name }}">
+
+            <div class="meal-content">
+                <h3><a href="{% url 'meal_detail' meal.id %}">{{ meal.name }}</a></h3>
+
+                <p>
+                    {{ meal.description|truncatewords:20 }}
+                </p>
+
+                <div class="ingredients">
+                    <strong>Masalliqlar:</strong><br>
+                    {% for ingredient in meal.ingredients.all %}
+                        <span>{{ ingredient.name }} - {{ingredient.quantity}} {{ingredient.unit}}</span>
+                    {% empty %}
+                        <span>Masalliq mavjud emas</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+</div>
+
+{% endblock content %}
