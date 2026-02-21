@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Ingredient, Meal
+from .models import Ingredient, Meal, Comment
 # Register your models here.
 
 class IngredientAdmin(admin.ModelAdmin):
@@ -18,3 +18,4 @@ class MealAdmin(admin.ModelAdmin):
 
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Meal, MealAdmin)
+admin.site.register(Comment)

@@ -239,10 +239,10 @@
 
     {% for comment in comments %}
         <div class="comment-card">
-            <strong>{{ comment.name }}</strong>
+            <strong>{{ comment.author }}</strong>
             <br>
             <small>{{ comment.created_at }}</small>
-            <p>{{ comment.text }}</p>
+            <p>{{ comment.body }}</p>
         </div>
     {% empty %}
         <p>Hozircha komment yo‘q.</p>
@@ -253,8 +253,8 @@
 
         <form method="POST">
             {% csrf_token %}
-            <input type="text" name="name" placeholder="Ismingiz" required>
-            <textarea name="text" rows="4" placeholder="Komment yozing..." required></textarea>
+            <input type="text" name="author" placeholder="Ismingiz" required>
+            <textarea name="body" rows="4" placeholder="Komment yozing..." required></textarea>
             <button type="submit">Yuborish</button>
         </form>
     </div>

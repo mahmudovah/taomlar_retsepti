@@ -34,3 +34,13 @@ class Meal(models.Model):
         verbose_name = 'Taom'
         verbose_name_plural = 'Taomlar'
         ordering = ["-created_at"]
+
+class Comment(models.Model):
+    meal = models.ForeignKey(Meal,on_delete=models.CASCADE)
+    author = models.CharField(max_length=255)
+    body = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at =models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.author}'s comment on {self.meal}"
