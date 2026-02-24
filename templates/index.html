@@ -12,8 +12,11 @@ FoodR | Bosh sahifa
 
     {% for meal in meals %}
         <div class="meal-card">
+        {% if meal.image %}
             <img src="{{ meal.image.url }}" alt="{{ meal.name }}">
-
+        {% else %}
+            <img src="https://i.sstatic.net/y9DpT.jpg" alt="no_food_photo">
+        {% endif%}
             <div class="meal-content">
                 <h3><a href="{% url 'meal_detail' meal.id %}">{{ meal.name }}</a></h3>
 

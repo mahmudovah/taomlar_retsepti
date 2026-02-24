@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Taom qo‘shish</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head> 
+
+<body class="bg-light">
+
+<div class="container mt-5" style="max-width:700px;">
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <h3 class="text-center mb-4">🍽️ Yangi Taom Qo‘shish</h3>
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <!-- Taom nomi -->
+                <div class="mb-3">
+                    <label class="form-label">Taom nomi</label>
+                    <input type="text" name="name" class="form-control" placeholder="Taom nomini kiriting" required>
+                </div>
+
+                <!-- Tavsif -->
+                <div class="mb-3">
+                    <label class="form-label">Tavsif</label>
+                    <textarea name="description" class="form-control" rows="3" placeholder="Taom haqida qisqacha"></textarea>
+                </div>
+
+                <!-- Rasm -->
+                <div class="mb-3">
+                    <label class="form-label">Taom rasmi</label>
+                    <input type="file" name="image" class="form-control">
+                </div>
+
+                <!-- Ingredientlar -->
+                <div class="mb-3">
+                    <label class="form-label">Ingredientlar</label>
+                    <select name="ingredients" class="form-select" multiple>
+
+                        {% for ingredient in ingredients %}
+                        <option value="{{ ingredient.id }}">
+                            {{ ingredient.name }} - {{ ingredient.quantity }} {{ ingredient.unit }}
+                        </option>
+                        {% endfor %}
+
+                    </select>
+
+                    <small class="text-muted">
+                        Bir nechta ingredient tanlash uchun CTRL bosib tanlang
+                    </small>
+                </div>
+
+                <!-- Status -->
+                <div class="mb-3">
+                    <label class="form-label">Holati</label>
+
+                    <select name="status" class="form-select">
+                        <option value="activ">Faol</option>
+                        <option value="inactive">Nofaol</option>
+                    </select>
+                </div>
+
+                <!-- Button -->
+                <div class="d-grid">
+                    <button class="btn btn-success">
+                        ➕ Taom qo‘shish
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
